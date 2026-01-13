@@ -2,24 +2,19 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 
-//	Vertex Shader src
-const char* vertexShaderSource = R"(
-#version 330 core
-layout (location = 0) in vec3 aPos;
-void main() {
-	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+std::string loadShaderFromFile(const char* filePath) {
+    std::ifstream file(filePath);	// Creates input stream
+    if (!file.is_open()) {
+        std::cerr << "Failed to open shader file: " << filePath << std::endl;
+        return "";
+    }
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
 }
-)";
-
-//	Fragment Shader src
-const char* fragmentShaderSource = R"(
-#version 330 core
-out vec4 FragColor;
-void main() {
-	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
-}
-)";
 
 int main()
 {
@@ -42,6 +37,12 @@ int main()
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         return -1;
     }
+
+    // Load shaders from files
+    std::string vertexCode = loadShaderFromFile("shaders/vertex.glsl");
+    std::string fragmentCode = loadShaderFromFile("shaders/fragment.glsl");
+    const char* vertexShaderSource = vertexCode.c_str();
+    const char* fragmentShaderSource = fragmentCode.c_str();
 	
 	//	Compilation status variables
 	int success;
