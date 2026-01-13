@@ -10,7 +10,7 @@
                 "-std=c++17",
                 "-Iinclude",
                 "-Llib",				
-                "src/main.cpp",				
+                "src/*.cpp",				
                 "src/glad.c",
                 "-lglfw3dll",
                 "-o",

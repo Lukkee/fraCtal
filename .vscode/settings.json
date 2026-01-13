@@ -1,5 +1,5 @@
 {
     "code-runner.executorMap": {
-        "cpp": "cd $workspaceRoot && g++ -Iinclude -Llib src/main.cpp src/glad.c -lglfw3dll -o myprogram.exe && ./myprogram.exe"
+        "cpp": "cd $workspaceRoot && g++ -Iinclude -Llib src/*.cpp src/glad.c -lglfw3dll -o fraCtal.exe && ./fraCtal.exe"
     }
 }
