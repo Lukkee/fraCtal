@@ -2,7 +2,7 @@
 
 ## Description
 
-WIP fractal generation in C, using OpenGL
+WIP fractal generation in C++, using OpenGL
 
 ## Installation
 
